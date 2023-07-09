@@ -1,0 +1,27 @@
+{
+  "name": "@cindi/cindi",
+  "version": "0.0.0",
+  "description": "Build your media center at home.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takashiro/cindi.git"
+  },
+  "keywords": [
+    "cinema",
+    "media",
+    "center"
+  ],
+  "author": "Kazuichi Takashiro",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/takashiro/cindi/issues"
+  },
+  "homepage": "https://github.com/takashiro/cindi#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
