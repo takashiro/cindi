@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 
 import { Runnable } from './model/Runnable';
 
-interface Scheduler {
+interface Schedule {
 	on(event: 'error', listener: (error: Error) => void): this;
 
 	once(event: 'error', listener: (error: Error) => void): this;
@@ -12,7 +12,7 @@ interface Scheduler {
 	emit(event: 'error', error: Error): boolean;
 }
 
-class Scheduler extends EventEmitter {
+class Schedule extends EventEmitter {
 	protected runnable: Runnable;
 
 	protected frequency: number;
@@ -32,7 +32,15 @@ class Scheduler extends EventEmitter {
 	}
 
 	setFrequency(frequency: number): void {
+		if (frequency === this.frequency) {
+			return;
+		}
 		this.frequency = frequency;
+
+		if (this.isStarted()) {
+			this.#clearInterval();
+			this.#setInterval();
+		}
 	}
 
 	start(): void {
@@ -41,20 +49,18 @@ class Scheduler extends EventEmitter {
 		}
 
 		this.run();
-
-		this.timer = setInterval(() => this.run(), this.frequency);
+		this.#setInterval();
 	}
 
 	stop(): void {
 		if (!this.timer) {
 			return;
 		}
-		clearInterval(this.timer);
-		delete this.timer;
+		this.#clearInterval();
 	}
 
 	isStarted(): boolean {
-		return Boolean(this.timer);
+		return Boolean(this.timer) && this.running;
 	}
 
 	isStopped(): boolean {
@@ -84,6 +90,15 @@ class Scheduler extends EventEmitter {
 			this.running = false;
 		}
 	}
+
+	#setInterval(): void {
+		this.timer = setInterval(() => this.run(), this.frequency);
+	}
+
+	#clearInterval(): void {
+		clearInterval(this.timer);
+		delete this.timer;
+	}
 }
 
-export default Scheduler;
+export default Schedule;
