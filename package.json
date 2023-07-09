@@ -26,11 +26,10 @@
   },
   "homepage": "https://github.com/takashiro/cindi#readme",
   "workspaces": [
-    "src/*",
-    "test/*"
+    "src/*"
   ],
   "dependencies": {
-    "@cindi/rss-reader": "file:src/rss-reader"
+    "@cindi/vigilia": "file:src/vigilia"
   },
   "devDependencies": {
     "@types/node": "^20.4.1",
