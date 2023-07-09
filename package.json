@@ -21,7 +21,21 @@
     "url": "https://github.com/takashiro/cindi/issues"
   },
   "homepage": "https://github.com/takashiro/cindi#readme",
+  "workspaces": [
+    "src/*",
+    "test/*"
+  ],
+  "dependencies": {
+    "@cindi/rss-reader": "file:src/rss-reader"
+  },
   "devDependencies": {
+    "@types/node": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "jest": "^29.6.1",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
   }
 }

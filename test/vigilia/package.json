@@ -1,0 +1,10 @@
+{
+  "name": "@cindi-tests/vigilia",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Kazuichi Takashiro",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "@cindi/vigilia": "file:../src/vigilia"
+  }
+}
