@@ -4,7 +4,11 @@
   "description": "Build your media center at home.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "debug": "tsc --incremental --sourceMap",
+    "test": "npm run lint && npm run jest",
+    "lint": "eslint --ext=ts,js .",
+    "jest": "jest --coverage"
   },
   "repository": {
     "type": "git",
