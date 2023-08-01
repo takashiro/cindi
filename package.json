@@ -4,8 +4,14 @@
   "description": "Build your media center at home.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "debug": "tsc --incremental --sourceMap",
+    "start": "webpack serve --config=src/web/webpack.config.js --mode=development",
+    "build": "npm run build-qbittorrent && npm run build-vigilia && npm run build-web",
+    "build-qbittorrent": "tsc -p src/qbittorrent",
+    "debug-qbittorrent": "tsc -p src/qbittorrent --incremental --sourceMap",
+    "build-vigilia": "tsc -p src/vigilia",
+    "debug-vigilia": "tsc -p src/vigilia --incremental --sourceMap",
+    "build-web": "webpack --config=src/web/webpack.config.js",
+    "debug-web": "webpack --config=src/web/webpack.config.js --mode=development",
     "test": "npm run lint && npm run jest",
     "lint": "eslint --ext=ts,js .",
     "jest": "jest --coverage"
@@ -30,17 +36,29 @@
   ],
   "dependencies": {
     "@cindi/qbittorrent": "file:src/qbittorrent",
-    "@cindi/vigilia": "file:src/vigilia"
+    "@cindi/vigilia": "file:src/vigilia",
+    "@cindi/web": "file:src/web"
   },
   "devDependencies": {
     "@types/node": "^20.4.1",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
+    "css-loader": "^6.8.1",
     "eslint": "^8.44.0",
     "eslint-config-airbnb": "^19.0.4",
     "form-data": "^4.0.0",
+    "html-webpack-plugin": "^5.5.3",
     "jest": "^29.6.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "sass": "^1.64.2",
+    "sass-loader": "^13.3.2",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.1.6"
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }

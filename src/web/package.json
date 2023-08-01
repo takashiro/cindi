@@ -1,0 +1,25 @@
+{
+  "name": "@cindi/web",
+  "version": "0.1.0",
+  "description": "Web UI of your home cinema",
+  "main": "index.tsx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takashiro/cindi/tree/dev/src/web"
+  },
+  "keywords": [
+    "qbittorrent",
+    "react",
+    "web"
+  ],
+  "author": "Kazuichi Takashiro",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/takashiro/cindi/issues"
+  },
+  "homepage": "https://github.com/takashiro/cindi#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
