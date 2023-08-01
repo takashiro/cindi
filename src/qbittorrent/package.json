@@ -1,0 +1,28 @@
+{
+  "name": "@cindi/qbittorrent",
+  "version": "0.0.0",
+  "description": "Constantly watch and submit resources from RSS feeds or web pages.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takashiro/cindi/tree/dev/src/qbittorrent"
+  },
+  "keywords": [
+    "rss",
+    "reader",
+    "feed",
+    "web"
+  ],
+  "author": "Kazuichi Takashiro",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/takashiro/cindi/issues"
+  },
+  "homepage": "https://github.com/takashiro/cindi",
+  "dependencies": {
+    "sax": "^1.2.4"
+  },
+  "devDependencies": {
+    "@types/sax": "^1.2.4"
+  }
+}
