@@ -4,7 +4,6 @@ module.exports = {
 		node: true,
 	},
 	extends: [
-		'plugin:react/recommended',
 		'airbnb',
 		'plugin:@typescript-eslint/recommended',
 	],
@@ -14,7 +13,6 @@ module.exports = {
 		sourceType: 'module',
 	},
 	plugins: [
-		'react',
 		'@typescript-eslint',
 	],
 	rules: {
@@ -39,12 +37,18 @@ module.exports = {
 			'error',
 			'tab',
 		],
+		'react/jsx-indent-props': [
+			'error',
+			'tab',
+		],
 		'react/jsx-filename-extension': [
 			'error',
 			{
 				extensions: ['.tsx'],
 			},
 		],
+		'react/jsx-props-no-spreading': 'off',
+		'react/require-default-props': 'off',
 		'no-plusplus': 'off',
 		'no-redeclare': 'off',
 		'no-restricted-syntax': [

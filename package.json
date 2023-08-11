@@ -36,6 +36,7 @@
   ],
   "dependencies": {
     "@cindi/qbittorrent": "file:src/qbittorrent",
+    "@cindi/spider": "file:src/spider",
     "@cindi/vigilia": "file:src/vigilia",
     "@cindi/web": "file:src/web"
   },

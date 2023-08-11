@@ -1,0 +1,27 @@
+{
+  "name": "@cindi/spider",
+  "version": "0.0.0",
+  "description": "Search APIs for resources on a website.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takashiro/cindi/tree/dev/src/spider"
+  },
+  "keywords": [
+    "media",
+    "spider",
+    "web"
+  ],
+  "author": "Kazuichi Takashiro",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/takashiro/cindi/issues"
+  },
+  "homepage": "https://github.com/takashiro/cindi",
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.1"
+  }
+}
