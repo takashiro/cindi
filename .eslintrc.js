@@ -59,7 +59,9 @@ module.exports = {
 		'no-tabs': 'off',
 		'no-unused-vars': 'off',
 		'no-use-before-define': 'off',
+		'no-useless-constructor': 'off',
 		semi: 'off',
 		'@typescript-eslint/no-use-before-define': 'error',
+		'@typescript-eslint/no-useless-constructor': 'error',
 	},
 };
