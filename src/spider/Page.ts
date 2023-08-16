@@ -61,7 +61,7 @@ export class Page {
 		return Boolean(this.dom);
 	}
 
-	getDocument(): Document {
+	get document(): Document {
 		this.checkOpen();
 		return this.dom.window.document;
 	}

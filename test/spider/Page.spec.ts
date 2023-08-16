@@ -55,10 +55,10 @@ it('opens a page', async () => {
 		return {} as unknown as http.ClientRequest;
 	});
 
-	expect(() => reader.getDocument()).toThrowError('The page is not open.');
+	expect(() => reader.document).toThrowError('The page is not open.');
 	await reader.open();
 
-	const document = reader.getDocument();
+	const { document } = reader;
 	const div = document.querySelector('div');
 	expect(div?.textContent).toBe('Catch me if you can.');
 
