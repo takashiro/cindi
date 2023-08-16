@@ -1,6 +1,7 @@
 import React from 'react';
 
 import type Torrent from '../../model/Torrent';
+import Capsule from '../../common/Capsule';
 
 export default function TorrentList(): JSX.Element {
 	const [torrents, setTorrents] = React.useState<Torrent[]>([]);
@@ -13,24 +14,15 @@ export default function TorrentList(): JSX.Element {
 
 	React.useEffect(() => {
 		fetchTorrents();
-	});
+	}, []);
 
 	return (
-		<table>
-			<thead>
-				<tr>
-					<td>Name</td>
-					<td>Size</td>
-					<td>Done</td>
-				</tr>
-			</thead>
-			<tbody>
-				{torrents.map((torrent) => (
-					<tr>
-						<td>{torrent.name}</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<div>
+			{torrents.map((torrent) => (
+				<Capsule heading={torrent.name}>
+					<td>{torrent.name}</td>
+				</Capsule>
+			))}
+		</div>
 	);
 }
