@@ -5,6 +5,7 @@ import type { Readable } from 'stream';
 import { JSDOM } from 'jsdom';
 
 import readStream from './util/readStream';
+import { CssSelector } from './model/Config';
 
 type Client = typeof http | typeof https;
 
@@ -35,7 +36,7 @@ function openLink(link: URL): Promise<http.IncomingMessage> {
 }
 
 export class Page {
-	protected readonly location: URL;
+	protected location: URL;
 
 	protected dom?: JSDOM;
 
@@ -64,6 +65,14 @@ export class Page {
 	get document(): Document {
 		this.checkOpen();
 		return this.dom.window.document;
+	}
+
+	querySelector(selector: CssSelector): Element | null {
+		return this.document.querySelector(selector);
+	}
+
+	querySelectorAll(selector: CssSelector): NodeListOf<Element> {
+		return this.document.querySelectorAll(selector);
 	}
 
 	protected checkOpen(): asserts this is Page & { dom: JSDOM } {
