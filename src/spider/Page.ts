@@ -40,8 +40,8 @@ export class Page {
 
 	protected dom?: JSDOM;
 
-	constructor(location: string) {
-		this.location = new URL(location);
+	constructor(location: string | URL) {
+		this.location = typeof location === 'string' ? new URL(location) : location;
 	}
 
 	async open(): Promise<void> {

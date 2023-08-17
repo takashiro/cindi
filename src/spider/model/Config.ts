@@ -14,6 +14,8 @@ export interface LinkStructure {
 	property?: string;
 }
 
+export type LinkSelector = ElementSelector<LinkStructure>;
+
 export interface DownloadLinkStructure extends LinkStructure {
 	/**
 	 * If the link is just a page,
@@ -47,12 +49,12 @@ export interface FolderPageStructure {
 	/**
 	 * A link to go to the previous page.
 	 */
-	prev?: LinkStructure;
+	prev?: LinkSelector;
 
 	/**
 	 * A link to go to the next page.
 	 */
-	next?: LinkStructure;
+	next?: LinkSelector;
 }
 
 export type FolderPageSelector = ElementSelector<FolderPageStructure>;
