@@ -85,9 +85,22 @@ export class Page {
 		if (!a) {
 			return;
 		}
-		const href = a.getAttribute(property ?? 'href');
+		return this.resolveLink(a, property);
+	}
+
+	queryLinks({ selector, property }: LinkLocator): Hyperlink[] {
+		const targets = this.querySelectorAll(selector);
+		const links: Hyperlink[] = [];
+		for (const a of targets) {
+			links.push(this.resolveLink(a, property));
+		}
+		return links;
+	}
+
+	protected resolveLink(a: Element, property = 'href'): Hyperlink {
+		const href = a.getAttribute(property);
 		return {
-			name: a.textContent ?? a.getAttribute('aria-label') ?? '',
+			name: a.getAttribute('aria-label') ?? a.textContent ?? '',
 			location: href ? new URL(href, this.location) : undefined,
 		};
 	}
