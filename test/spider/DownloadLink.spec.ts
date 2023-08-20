@@ -26,12 +26,12 @@ it('fails to find a hyperlink', async () => {
 	const page = new DownloadLink('https://takashiro.cn', {
 		selector: 'button',
 	});
-	await expect(() => page.go()).rejects.toThrowError('Failed to find the download link from https://takashiro.cn/');
+	await expect(() => page.go()).rejects.toThrowError('Failed to find the download link at https://takashiro.cn/');
 });
 
 it('fails to read property', async () => {
 	const page = new DownloadLink('https://takashiro.cn', {
 		selector: 'div',
 	});
-	await expect(() => page.go()).rejects.toThrowError('Failed to read href property from the link in https://takashiro.cn/');
+	await expect(() => page.go()).rejects.toThrowError('Failed to find the download link at https://takashiro.cn/');
 });

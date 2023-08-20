@@ -4,8 +4,8 @@ import { URL } from 'url';
 import type { Readable } from 'stream';
 import { JSDOM } from 'jsdom';
 
+import type { CssSelector, LinkLocator } from './model/Config';
 import readStream from './util/readStream';
-import { CssSelector } from './model/Config';
 
 type Client = typeof http | typeof https;
 
@@ -44,6 +44,10 @@ export class Page {
 		this.location = typeof location === 'string' ? new URL(location) : location;
 	}
 
+	getLocation(): URL {
+		return this.location;
+	}
+
 	async open(): Promise<void> {
 		const res = await openLink(this.location);
 		await this.openStream(res);
@@ -73,6 +77,12 @@ export class Page {
 
 	querySelectorAll(selector: CssSelector): NodeListOf<Element> {
 		return this.document.querySelectorAll(selector);
+	}
+
+	queryLink({ selector, property }: LinkLocator): URL | undefined {
+		const a = this.querySelector(selector);
+		const href = a?.getAttribute(property ?? 'href');
+		return href ? new URL(href, this.location) : undefined;
 	}
 
 	protected checkOpen(): asserts this is Page & { dom: JSDOM } {

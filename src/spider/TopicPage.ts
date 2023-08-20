@@ -1,13 +1,13 @@
 import DownloadLink from './DownloadLink';
-import type { CssSelector, DownloadLinkSelector, TopicPageStructure } from './model/Config';
+import type { CssSelector, DownloadLinkLocator, TopicPageConfig } from './model/Config';
 import Page from './Page';
 
 export class TopicPage extends Page {
 	protected readonly title: CssSelector;
 
-	protected readonly downloads: DownloadLinkSelector[];
+	protected readonly downloads: DownloadLinkLocator[];
 
-	constructor(location: string, options: TopicPageStructure) {
+	constructor(location: string, options: TopicPageConfig) {
 		super(location);
 		this.title = options.title;
 		this.downloads = options.downloads;

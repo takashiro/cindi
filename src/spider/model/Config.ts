@@ -1,32 +1,32 @@
 export type CssSelector = string;
 
-type ElementSelector<T> = T & {
+type ElementLocator<T> = T & {
 	/**
-	 * A CSS selector to find the download link on this page.
+	 * A CSS selector to locate the download link on this page.
 	 */
 	selector: CssSelector;
 };
 
-export interface LinkStructure {
+export interface LinkConfig {
 	/**
 	 * Link property on the download link. (Default: `href`)
 	 */
 	property?: string;
 }
 
-export type LinkSelector = ElementSelector<LinkStructure>;
+export type LinkLocator = ElementLocator<LinkConfig>;
 
-export interface DownloadLinkStructure extends LinkStructure {
+export interface DownloadLinkConfig extends LinkConfig {
 	/**
 	 * If the link is just a page,
 	 * define this element to find the actual download link.
 	 */
-	next?: DownloadLinkSelector;
+	next?: ElementLocator<DownloadLinkConfig>;
 }
 
-export type DownloadLinkSelector = ElementSelector<DownloadLinkStructure>;
+export type DownloadLinkLocator = ElementLocator<DownloadLinkConfig>;
 
-export interface TopicPageStructure {
+export interface TopicPageConfig {
 	/**
 	 *A CSS selector to find the title.
 	 */
@@ -35,26 +35,30 @@ export interface TopicPageStructure {
 	/**
 	 * A CSS selector to find download links on this page.
 	 */
-	downloads: DownloadLinkSelector[];
+	downloads: DownloadLinkLocator[];
 }
 
-export type TopicPageSelector = ElementSelector<TopicPageStructure>;
+export interface TopicPageLocator extends LinkLocator {
+	config: TopicPageConfig;
+}
 
-export interface FolderPageStructure {
+export interface FolderPageConfig {
 	/**
 	 * CSS selectors to find topics on this page.
 	 */
-	topics: TopicPageSelector[];
+	topics: TopicPageLocator[];
 
 	/**
 	 * A link to go to the previous page.
 	 */
-	prev?: LinkSelector;
+	prev?: LinkLocator;
 
 	/**
 	 * A link to go to the next page.
 	 */
-	next?: LinkSelector;
+	next?: LinkLocator;
 }
 
-export type FolderPageSelector = ElementSelector<FolderPageStructure>;
+export interface FolderPageLocator extends LinkLocator {
+	config: FolderPageConfig;
+}
