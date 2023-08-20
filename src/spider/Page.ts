@@ -5,6 +5,7 @@ import type { Readable } from 'stream';
 import { JSDOM } from 'jsdom';
 
 import type { CssSelector, LinkLocator } from './model/Config';
+import type Hyperlink from './model/Hyperlink';
 import readStream from './util/readStream';
 
 type Client = typeof http | typeof https;
@@ -79,10 +80,16 @@ export class Page {
 		return this.document.querySelectorAll(selector);
 	}
 
-	queryLink({ selector, property }: LinkLocator): URL | undefined {
+	queryLink({ selector, property }: LinkLocator): Hyperlink | undefined {
 		const a = this.querySelector(selector);
-		const href = a?.getAttribute(property ?? 'href');
-		return href ? new URL(href, this.location) : undefined;
+		if (!a) {
+			return;
+		}
+		const href = a.getAttribute(property ?? 'href');
+		return {
+			name: a.textContent ?? a.getAttribute('aria-label') ?? '',
+			location: href ? new URL(href, this.location) : undefined,
+		};
 	}
 
 	protected checkOpen(): asserts this is Page & { dom: JSDOM } {

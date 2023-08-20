@@ -33,5 +33,5 @@ it('fails to read property', async () => {
 	const page = new DownloadLink('https://takashiro.cn', {
 		selector: 'div',
 	});
-	await expect(() => page.go()).rejects.toThrowError('Failed to find the download link at https://takashiro.cn/');
+	await expect(() => page.go()).rejects.toThrowError('Failed to read hyperlink property from the download link at https://takashiro.cn/');
 });

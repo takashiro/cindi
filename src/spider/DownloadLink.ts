@@ -17,11 +17,14 @@ export class DownloadLink {
 		while (config) {
 			const page = new Page(location);
 			await page.open();
-			const href = page.queryLink(config);
-			if (!href) {
+			const link = page.queryLink(config);
+			if (!link) {
 				throw new Error(`Failed to find the download link at ${location}`);
 			}
-			location = new URL(href, location);
+			if (!link.location) {
+				throw new Error(`Failed to read hyperlink property from the download link at ${location}`);
+			}
+			location = link.location;
 			config = config.next;
 			page.close();
 		}
