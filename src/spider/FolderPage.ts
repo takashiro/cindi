@@ -1,15 +1,15 @@
-import type { FolderPageConfig, LinkLocator, TopicPageLocator } from './model/Config';
+import type { Folder, LinkLocator, TopicLinkLocator } from './model/Locator';
 import type Hyperlink from './model/Hyperlink';
 import Page from './Page';
 
 export class FolderPage extends Page {
-	protected topics: TopicPageLocator[];
+	protected topics: TopicLinkLocator[];
 
 	protected prev?: LinkLocator;
 
 	protected next?: LinkLocator;
 
-	constructor(location: string | URL, options: FolderPageConfig) {
+	constructor(location: string | URL, options: Folder) {
 		super(location);
 
 		this.topics = options.topics;
@@ -37,7 +37,7 @@ export class FolderPage extends Page {
 		return location && new FolderPage(location, this.getOptions());
 	}
 
-	protected getOptions(): FolderPageConfig {
+	protected getOptions(): Folder {
 		return {
 			topics: this.topics,
 			prev: this.prev,

@@ -4,7 +4,7 @@ import { URL } from 'url';
 import type { Readable } from 'stream';
 import { JSDOM } from 'jsdom';
 
-import type { CssSelector, LinkLocator } from './model/Config';
+import type { CssSelector, LinkLocator } from './model/Locator';
 import type Hyperlink from './model/Hyperlink';
 import readStream from './util/readStream';
 

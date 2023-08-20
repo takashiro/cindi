@@ -1,5 +1,5 @@
 import Page from './Page';
-import type { DownloadLinkLocator } from './model/Config';
+import type { DownloadLinkLocator } from './model/Locator';
 
 export class DownloadLink {
 	protected readonly location: URL;

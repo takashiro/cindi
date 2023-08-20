@@ -1,32 +1,32 @@
 export type CssSelector = string;
 
-type ElementLocator<T> = T & {
+type Locator<T> = T & {
 	/**
 	 * A CSS selector to locate the download link on this page.
 	 */
 	selector: CssSelector;
 };
 
-export interface LinkConfig {
+export interface Link {
 	/**
 	 * Link property on the download link. (Default: `href`)
 	 */
 	property?: string;
 }
 
-export type LinkLocator = ElementLocator<LinkConfig>;
+export type LinkLocator = Locator<Link>;
 
-export interface DownloadLinkConfig extends LinkConfig {
+export interface DownloadLink extends Link {
 	/**
 	 * If the link is just a page,
 	 * define this element to find the actual download link.
 	 */
-	next?: ElementLocator<DownloadLinkConfig>;
+	next?: Locator<DownloadLink>;
 }
 
-export type DownloadLinkLocator = ElementLocator<DownloadLinkConfig>;
+export type DownloadLinkLocator = Locator<DownloadLink>;
 
-export interface TopicPageConfig {
+export interface Topic {
 	/**
 	 *A CSS selector to find the title.
 	 */
@@ -38,15 +38,15 @@ export interface TopicPageConfig {
 	downloads: DownloadLinkLocator[];
 }
 
-export interface TopicPageLocator extends LinkLocator {
-	config: TopicPageConfig;
+export interface TopicLinkLocator extends LinkLocator {
+	config: Topic;
 }
 
-export interface FolderPageConfig {
+export interface Folder {
 	/**
 	 * CSS selectors to find topics on this page.
 	 */
-	topics: TopicPageLocator[];
+	topics: TopicLinkLocator[];
 
 	/**
 	 * A link to go to the previous page.
@@ -59,6 +59,6 @@ export interface FolderPageConfig {
 	next?: LinkLocator;
 }
 
-export interface FolderPageLocator extends LinkLocator {
-	config: FolderPageConfig;
+export interface FolderLinkLocator extends LinkLocator {
+	config: Folder;
 }

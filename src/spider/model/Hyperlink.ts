@@ -1,4 +1,4 @@
-interface Link {
+export interface Hyperlink {
 	/**
 	 * Accessible name.
 	 */
@@ -10,4 +10,4 @@ interface Link {
 	location?: URL;
 }
 
-export default Link;
+export default Hyperlink;

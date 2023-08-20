@@ -1,5 +1,5 @@
 import DownloadLink from './DownloadLink';
-import type { CssSelector, DownloadLinkLocator, TopicPageConfig } from './model/Config';
+import type { CssSelector, DownloadLinkLocator, Topic } from './model/Locator';
 import Page from './Page';
 
 export class TopicPage extends Page {
@@ -7,7 +7,7 @@ export class TopicPage extends Page {
 
 	protected readonly downloads: DownloadLinkLocator[];
 
-	constructor(location: string, options: TopicPageConfig) {
+	constructor(location: string, options: Topic) {
 		super(location);
 		this.title = options.title;
 		this.downloads = options.downloads;
