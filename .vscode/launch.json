@@ -5,6 +5,20 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Launch Server",
+			"program": "${workspaceFolder}/src/server/app.ts",
+			"request": "launch",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"type": "node",
+			"runtimeArgs": [
+				"--nolazy",
+				"-r",
+				"ts-node/register/transpile-only"
+			]
+		},
+		{
 			"name": "Debug Test",
 			"type": "node",
 			"request": "launch",
