@@ -1,5 +1,6 @@
-import type { Folder, LinkLocator, TopicLinkLocator } from './model/Locator';
+import type { Folder as FolderPageOptions, LinkLocator, TopicLinkLocator } from './model/Locator';
 import type Hyperlink from './model/Hyperlink';
+import type Folder from './model/Folder';
 import Page from './Page';
 
 export class FolderPage extends Page {
@@ -9,12 +10,20 @@ export class FolderPage extends Page {
 
 	protected next?: LinkLocator;
 
-	constructor(location: string | URL, options: Folder) {
+	constructor(location: string | URL, options: FolderPageOptions) {
 		super(location);
 
 		this.topics = options.topics;
 		this.prev = options.prev;
 		this.next = options.next;
+	}
+
+	override async getContent(): Promise<Folder> {
+		return {
+			topics: this.getTopics(),
+			prev: this.getPrev(),
+			next: this.getNext(),
+		};
 	}
 
 	getTopics(): Hyperlink[] {
@@ -23,26 +32,12 @@ export class FolderPage extends Page {
 			.reduce((prev, cur) => prev.concat(cur), []);
 	}
 
-	getPrev(): FolderPage | undefined {
-		return this.prev && this.getPage(this.prev);
+	getPrev(): Hyperlink | undefined {
+		return this.prev && this.queryLink(this.prev);
 	}
 
-	getNext(): FolderPage | undefined {
-		return this.next && this.getPage(this.next);
-	}
-
-	protected getPage(target: LinkLocator): FolderPage | undefined {
-		const link = this.queryLink(target);
-		const location = link?.location;
-		return location && new FolderPage(location, this.getOptions());
-	}
-
-	protected getOptions(): Folder {
-		return {
-			topics: this.topics,
-			prev: this.prev,
-			next: this.next,
-		};
+	getNext(): Hyperlink | undefined {
+		return this.next && this.queryLink(this.next);
 	}
 }
 

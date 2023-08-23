@@ -28,6 +28,7 @@
 				"--runInBand",
 				"--coverage=false",
 				"--no-cache",
+				"--testTimeout=9999999",
 				"${fileBasenameNoExtension}"
 			],
 			"console": "integratedTerminal",

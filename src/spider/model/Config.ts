@@ -1,4 +1,4 @@
-import type { Folder, Topic } from './Locator';
+import type { DownloadLinkLocator, Folder, Topic } from './Locator';
 import PageType from './PageType';
 
 export interface PageConfig {
@@ -13,6 +13,10 @@ export interface PageConfig {
 	location: string;
 }
 
+export interface DownloadPageConfig extends PageConfig, DownloadLinkLocator {
+	type: PageType.Download;
+}
+
 export interface TopicPageConfig extends PageConfig, Topic {
 	type: PageType.Topic;
 }
@@ -21,6 +25,6 @@ export interface FolderPageConfig extends PageConfig, Folder {
 	type: PageType.Folder;
 }
 
-export type Config = TopicPageConfig | FolderPageConfig;
+export type Config = DownloadPageConfig | TopicPageConfig | FolderPageConfig;
 
 export default Config;

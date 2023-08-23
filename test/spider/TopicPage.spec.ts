@@ -16,11 +16,10 @@ it('selects download links', async () => {
 		],
 	});
 	await page.openStream(fs.createReadStream('test/sample/simple.html'));
-	expect(page.getTitle()).toBe('Catch me if you can.');
-	const downloads = page.getDownloads();
+	const { title, downloads } = await page.getContent();
+	expect(title).toBe('Catch me if you can.');
 	expect(downloads).toHaveLength(1);
-	const link = await downloads[0].go();
-	expect(link.toString()).toBe('https://werewolf.takashiro.cn/');
+	expect(downloads[0].location?.toString()).toBe('https://werewolf.takashiro.cn/');
 	page.close();
 });
 

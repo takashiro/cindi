@@ -1,5 +1,7 @@
-import DownloadLink from './DownloadLink';
-import type { CssSelector, DownloadLinkLocator, Topic } from './model/Locator';
+import type { CssSelector, DownloadLinkLocator, Topic as TopicPageOptions } from './model/Locator';
+import type Hyperlink from './model/Hyperlink';
+import type Topic from './model/Topic';
+
 import Page from './Page';
 
 export class TopicPage extends Page {
@@ -7,10 +9,17 @@ export class TopicPage extends Page {
 
 	protected readonly downloads: DownloadLinkLocator[];
 
-	constructor(location: string, options: Topic) {
+	constructor(location: string, options: TopicPageOptions) {
 		super(location);
 		this.title = options.title;
 		this.downloads = options.downloads;
+	}
+
+	override async getContent(): Promise<Topic> {
+		return {
+			title: this.getTitle(),
+			downloads: this.getDownloads(),
+		};
 	}
 
 	getTitle(): string {
@@ -18,20 +27,10 @@ export class TopicPage extends Page {
 		return title?.textContent ?? '';
 	}
 
-	getDownloads(): DownloadLink[] {
-		const downloads: DownloadLink[] = [];
-		for (const { selector, property = 'href', next } of this.downloads) {
-			const links = this.querySelectorAll(selector);
-			for (const link of links) {
-				const href = link.getAttribute(property);
-				if (!href) {
-					continue; // eslint-disable-line no-continue
-				}
-				const downloadUrl = new URL(href, this.location);
-				downloads.push(new DownloadLink(downloadUrl, next));
-			}
-		}
-		return downloads;
+	getDownloads(): Hyperlink[] {
+		return this.downloads
+			.map((locator) => this.queryLinks(locator))
+			.reduce((prev, cur) => prev.concat(cur), []);
 	}
 }
 

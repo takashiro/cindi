@@ -36,7 +36,7 @@ function openLink(link: URL): Promise<http.IncomingMessage> {
 	});
 }
 
-export class Page {
+export abstract class Page {
 	protected location: URL;
 
 	protected dom?: JSDOM;
@@ -58,6 +58,8 @@ export class Page {
 		const content = await readStream(input);
 		this.dom = new JSDOM(content);
 	}
+
+	abstract getContent(): Promise<unknown>;
 
 	close(): void {
 		delete this.dom;
@@ -92,7 +94,10 @@ export class Page {
 		const targets = this.querySelectorAll(selector);
 		const links: Hyperlink[] = [];
 		for (const a of targets) {
-			links.push(this.resolveLink(a, property));
+			const link = this.resolveLink(a, property);
+			if (link.location) {
+				links.push(link);
+			}
 		}
 		return links;
 	}

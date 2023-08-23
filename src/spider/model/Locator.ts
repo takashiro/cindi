@@ -35,7 +35,7 @@ export interface Topic {
 	/**
 	 * A CSS selector to find download links on this page.
 	 */
-	downloads: DownloadLinkLocator[];
+	downloads: LinkLocator[];
 }
 
 export interface TopicLinkLocator extends LinkLocator {

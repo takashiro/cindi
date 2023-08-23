@@ -1,16 +1,10 @@
-import {
-	beforeAll,
-	expect,
-	it,
-	jest,
-} from '@jest/globals';
+import { expect, it, jest } from '@jest/globals';
 
 import fs from 'fs';
 import https from 'https';
 import http from 'http';
-import iconv from 'iconv-lite';
 
-import Page from '@cindi/spider/Page';
+import AbstractPage from '@cindi/spider/Page';
 
 jest.mock('https');
 jest.mock('http');
@@ -29,9 +23,11 @@ const httpGet = jest.mocked(http.get).mockImplementation((_url, cb): http.Client
 	return {} as unknown as http.ClientRequest;
 });
 
-beforeAll(() => {
-	iconv.encodingExists('utf-8');
-});
+class Page extends AbstractPage {
+	override async getContent(): Promise<unknown> {
+		return this.getLocation();
+	}
+}
 
 it('fails to open a page', async () => {
 	const reader = new Page('https://takashiro.cn');
