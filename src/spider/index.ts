@@ -25,3 +25,4 @@ export class Spider {
 }
 
 export default Spider;
+export * from './model/Config';

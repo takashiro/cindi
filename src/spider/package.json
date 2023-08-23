@@ -2,7 +2,7 @@
   "name": "@cindi/spider",
   "version": "0.0.0",
   "description": "Search APIs for resources on a website.",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/takashiro/cindi/tree/dev/src/spider"

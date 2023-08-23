@@ -1,26 +1,22 @@
 import path from 'path';
-import SpiderConfig from '@cindi/spider/model/Config';
 
 const read = require;
 
 export default class Config {
-	protected port = 8080;
-
-	protected spiders: SpiderConfig[] = [];
+	protected port = 8586;
 
 	async read(): Promise<void> {
 		const configFile = path.resolve(process.cwd(), 'cindi.config.js');
-		const config = read(configFile);
-		this.port = config.port;
-		this.spiders = config.spiders;
+		try {
+			const config = read(configFile);
+			this.port = config.port;
+		} catch (error) {
+			// ignore
+		}
 	}
 
 	getPort(): number {
 		return this.port;
-	}
-
-	getSpiders(): SpiderConfig[] {
-		return this.spiders;
 	}
 }
 

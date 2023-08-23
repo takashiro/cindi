@@ -2,7 +2,7 @@
   "name": "@cindi/server",
   "version": "0.0.0",
   "description": "Build your media center at home.",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/takashiro/cindi/tree/dev/src/server"
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/takashiro/cindi",
   "dependencies": {
+    "@cindi/spider": "file:../src/spider",
     "express": "^4.18.2"
   },
   "devDependencies": {

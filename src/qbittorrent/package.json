@@ -2,7 +2,7 @@
   "name": "@cindi/qbittorrent",
   "version": "0.0.0",
   "description": "Constantly watch and submit resources from RSS feeds or web pages.",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/takashiro/cindi/tree/dev/src/qbittorrent"

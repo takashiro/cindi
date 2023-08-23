@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies */
-const fs = require('fs');
+/* eslint-disable global-require, @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const qbittorrent = fs.existsSync('qbittorrent.config.js')
-	? require('./qbittorrent.config.js') // eslint-disable-line import/extensions
-	: { server: 'http://192.168.10.15:8787' };
+const rootDir = path.resolve(__dirname, '..', '..');
 
 /**
  * Configure Webpack
@@ -18,13 +16,13 @@ module.exports = function config(env, argv) {
 	const mode = argv?.mode === 'development' ? 'development' : 'production';
 	return {
 		mode,
-		entry: './src/web/index.tsx',
+		entry: path.resolve(__dirname, 'index.tsx'),
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, '..', '..', 'dist', 'web'),
+			path: path.join(rootDir, 'dist', 'web'),
 		},
 		resolveLoader: {
-			modules: [path.resolve(__dirname, '..', '..', 'node_modules')],
+			modules: [path.join(rootDir, 'node_modules')],
 		},
 		resolve: {
 			extensions: [
@@ -84,11 +82,14 @@ module.exports = function config(env, argv) {
 		],
 		devServer: {
 			port: 8585,
-			static: path.join(__dirname, 'dist'),
+			static: path.join(rootDir, 'dist', 'web'),
 			hot: true,
-			proxy: qbittorrent ? {
-				'/api': qbittorrent.server,
-			} : undefined,
+			proxy: {
+				'/api': {
+					target: 'http://localhost:8586',
+					pathRewrite: { '^/api': '' },
+				},
+			},
 		},
 	};
 };

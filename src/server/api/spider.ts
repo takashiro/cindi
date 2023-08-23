@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import Spider from '@cindi/spider';
-import FolderPage from '@cindi/spider/FolderPage';
-import Config from '@cindi/spider/model/Config';
+import Spider, { type Config } from '@cindi/spider';
 
 const router = Router();
 
@@ -10,10 +8,9 @@ router.post('/', async (req, res) => {
 	const spider = new Spider(config);
 	const page = spider.getPage();
 	await page.open();
-	if (page instanceof FolderPage) {
-		res.json(page.getTopics());
-	}
+	const content = await page.getContent();
 	page.close();
+	res.json(content);
 });
 
 export default router;
