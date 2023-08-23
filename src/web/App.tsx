@@ -1,9 +1,11 @@
 import React from 'react';
 
-import TorrentList from './page/TorrentList';
+import Banner from './landmark/Banner';
+
+import './global.scss';
 
 export default function App(): JSX.Element {
 	return (
-		<TorrentList />
+		<Banner />
 	);
 }
