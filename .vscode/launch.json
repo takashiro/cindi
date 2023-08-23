@@ -19,6 +19,13 @@
 			]
 		},
 		{
+			"name": "Launch Chrome",
+			"request": "launch",
+			"type": "chrome",
+			"url": "http://localhost:8585",
+			"webRoot": "${workspaceFolder}/dist/web"
+		},
+		{
 			"name": "Debug Test",
 			"type": "node",
 			"request": "launch",

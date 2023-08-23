@@ -1,8 +1,9 @@
 header {
 	h1 {
+		margin: 18px 22px;
 		background-clip: text;
 		-webkit-background-clip: text;
 		color: transparent;
-		background-image: linear-gradient(to right, #c7d2fe, #38bdf8, #c7d2fe);
+		background-image: linear-gradient(to right, var(--cindi-light-banner), var(--cindi-dark-banner), var(--cindi-light-banner));
 	}
 }

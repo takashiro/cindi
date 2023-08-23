@@ -1,7 +1,9 @@
+@import './palette.scss';
+
 body {
 	padding: 0;
 	margin: 0;
-	background: rgb(15, 23, 42);
+	background: var(--cindi-body-background);
 }
 
 body,
@@ -9,4 +11,21 @@ button,
 input,
 textarea {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+	background: var(--cindi-button-background);
+	border: var(--cindi-button-border);
+	color: var(--cindi-button-text);
+	font-size: 12pt;
+	padding: 0.6em 1.2em;
+	border-radius: 15px;
+	cursor: pointer;
+
+	&[type="submit"],
+	&.hot {
+		background: var(--cindi-hot-button-background);
+		border: var(--cindi-hot-button-border);
+		color: var(--cindi-hot-button-text);
+	}
 }
