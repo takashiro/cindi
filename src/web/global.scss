@@ -29,3 +29,17 @@ button {
 		color: var(--cindi-hot-button-text);
 	}
 }
+
+.light-sphere {
+	position: absolute;
+	background: radial-gradient(closest-side, rgba(147, 220, 253, 0.4) 0, transparent 100%);
+	width: 320px;
+	height: 360px;
+	z-index: -1;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}

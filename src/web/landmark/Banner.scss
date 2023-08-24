@@ -1,4 +1,11 @@
 header {
+	.light-sphere {
+		top: -50px;
+		left: -50px;
+		opacity: 0.3;
+		transform: rotate(38deg);
+	}
+
 	h1 {
 		margin: 18px 22px;
 		background-clip: text;
