@@ -10,7 +10,7 @@ ul.download-browser {
 		padding: 8px 8px 8px 80px;
 		height: 64px;
 
-		.thumbnail {
+		> .thumbnail {
 			position: absolute;
 			display: flex;
 			flex-direction: column;
@@ -33,6 +33,18 @@ ul.download-browser {
 			margin: 0;
 			font-size: 10pt;
 			font-weight: normal;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		&.folder {
+			display: flex;
+			align-items: center;
+
+			> .thumbnail {
+				top: 8px;
+			}
 		}
 
 		&:hover {

@@ -1,7 +1,8 @@
 import React from 'react';
 import type DownloadTask from '@cindi/model/DownloadTask';
 
-import DownloadCapsule from './DownloadCapsule';
+import Folder from './Folder';
+import Browser from './Browser';
 
 import './index.scss';
 
@@ -18,9 +19,10 @@ export default function DownloadBrowser(): JSX.Element {
 		fetchDownloads();
 	}, []);
 
+	const root = new Folder('', downloads);
 	return (
 		<ul className="download-browser">
-			{downloads.map((task) => <DownloadCapsule task={task} />)}
+			<Browser root={root.simplify()} />
 		</ul>
 	);
 }
