@@ -1,0 +1,21 @@
+{
+  "name": "@cindi/model",
+  "version": "0.0.0",
+  "description": "Data models to build your media center at home.",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takashiro/cindi/tree/dev/src/model"
+  },
+  "keywords": [
+    "media",
+    "bt",
+    "web"
+  ],
+  "author": "Kazuichi Takashiro",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/takashiro/cindi/issues"
+  },
+  "homepage": "https://github.com/takashiro/cindi"
+}

@@ -5,6 +5,8 @@ const read = require;
 export default class Config {
 	protected port = 8586;
 
+	protected bittorrentUrl = 'http://localhost:8989';
+
 	async read(): Promise<void> {
 		const configFile = path.resolve(process.cwd(), 'cindi.config.js');
 		try {
@@ -17,6 +19,10 @@ export default class Config {
 
 	getPort(): number {
 		return this.port;
+	}
+
+	getBittorrentUrl(): string {
+		return this.bittorrentUrl;
 	}
 }
 
