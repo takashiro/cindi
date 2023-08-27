@@ -5,7 +5,7 @@ import DownloadCapsule from './DownloadCapsule';
 
 import './index.scss';
 
-export default function DownloadList(): JSX.Element {
+export default function DownloadBrowser(): JSX.Element {
 	const [downloads, setDownloads] = React.useState<DownloadTask[]>([]);
 
 	async function fetchDownloads(): Promise<void> {
@@ -19,7 +19,7 @@ export default function DownloadList(): JSX.Element {
 	}, []);
 
 	return (
-		<ul className="download-list">
+		<ul className="download-browser">
 			{downloads.map((task) => <DownloadCapsule task={task} />)}
 		</ul>
 	);

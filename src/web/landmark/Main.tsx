@@ -1,12 +1,13 @@
 import React from 'react';
 
+import DownloadBrowser from '../page/DownloadBrowser';
+
 import './Main.scss';
-import DownloadList from '../page/DownloadList';
 
 export default function Main(): JSX.Element {
 	return (
 		<main>
-			<DownloadList />
+			<DownloadBrowser />
 			<button type="submit">Submit</button>
 			<button type="button">Cancel</button>
 		</main>
