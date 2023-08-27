@@ -1,7 +1,7 @@
 import React from 'react';
 import type DownloadTask from '@cindi/model/DownloadTask';
 
-import Capsule from '../../common/Capsule';
+import DownloadCapsule from './DownloadCapsule';
 
 import './index.scss';
 
@@ -20,11 +20,7 @@ export default function DownloadList(): JSX.Element {
 
 	return (
 		<ul className="download-list">
-			{downloads.map((download) => (
-				<Capsule component="li" heading={download.name}>
-					<td>{download.name}</td>
-				</Capsule>
-			))}
+			{downloads.map((task) => <DownloadCapsule task={task} />)}
 		</ul>
 	);
 }
