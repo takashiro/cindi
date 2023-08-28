@@ -1,0 +1,26 @@
+{
+  "name": "@cindi/client",
+  "version": "0.0.0",
+  "description": "Client-side SDK to communicate with Cindi Server.",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takashiro/cindi/tree/dev/src/client"
+  },
+  "keywords": [
+    "rss",
+    "reader",
+    "feed",
+    "web"
+  ],
+  "author": "Kazuichi Takashiro",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/takashiro/cindi/issues"
+  },
+  "homepage": "https://github.com/takashiro/cindi",
+  "dependencies": {
+    "@cindi/model": "^0.0.0",
+    "mitt": "^3.0.1"
+  }
+}

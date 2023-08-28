@@ -35,6 +35,7 @@
     "src/*"
   ],
   "dependencies": {
+    "@cindi/client": "file:src/client",
     "@cindi/model": "file:src/model",
     "@cindi/qbittorrent": "file:src/qbittorrent",
     "@cindi/spider": "file:src/spider",

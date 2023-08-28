@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/takashiro/cindi",
   "dependencies": {
-    "@cindi/qbittorrent": "file:../src/qbittorrent",
-    "@cindi/spider": "file:../src/spider",
+    "@cindi/qbittorrent": "^0.0.0",
+    "@cindi/spider": "^0.0.0",
     "express": "^4.18.2"
   },
   "devDependencies": {
