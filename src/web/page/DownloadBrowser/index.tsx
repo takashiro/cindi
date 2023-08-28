@@ -1,8 +1,8 @@
 import React from 'react';
 import { useClient } from '@cindi/client';
+import Folder from '@cindi/client/Folder';
 import type DownloadTask from '@cindi/model/DownloadTask';
 
-import Folder from './Folder';
 import Browser from './Browser';
 
 import './index.scss';

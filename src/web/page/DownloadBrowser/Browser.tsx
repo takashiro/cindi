@@ -1,9 +1,9 @@
 import React from 'react';
+import type Folder from '@cindi/client/Folder';
 
 import Capsule from '../../common/Capsule';
-
-import type Folder from './Folder';
 import FolderIcon from '../../icon/FolderIcon';
+
 import DownloadCapsule from './DownloadCapsule';
 
 interface BrowserProps {
