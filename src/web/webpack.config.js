@@ -80,6 +80,7 @@ module.exports = function config(env, argv) {
 				template: path.resolve(__dirname, 'index.ejs'),
 			}),
 		],
+		devtool: mode === 'development' ? 'source-map' : undefined,
 		devServer: {
 			port: 8585,
 			static: path.join(rootDir, 'dist', 'web'),
