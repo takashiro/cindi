@@ -1,6 +1,8 @@
 import mitt from 'mitt';
 import DownloadTask from '@cindi/model/DownloadTask';
 
+import Folder from './Folder';
+
 type Events = {
 	downloadsChanged: DownloadTask[];
 };
@@ -15,6 +17,11 @@ export default class Client {
 	protected readonly emit = this.mitt.emit;
 
 	constructor(protected readonly serverUrl = 'api') {
+	}
+
+	async getRootFolder(): Promise<Folder> {
+		const downloads = await this.getDownloads();
+		return new Folder('', downloads).simplify();
 	}
 
 	async getDownloads(): Promise<DownloadTask[]> {

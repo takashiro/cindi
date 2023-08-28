@@ -19,8 +19,12 @@ export default class Folder {
 		return [...this.folders.values()];
 	}
 
+	getFolderNames(): string[] {
+		return this.getFolders().map((folder) => folder.getName()).sort((a, b) => a.localeCompare(b));
+	}
+
 	getTasks(): DownloadTask[] {
-		return [...this.tasks.values()];
+		return [...this.tasks.values()].sort((a, b) => a.name.localeCompare(b.name));
 	}
 
 	getTask(name: string): DownloadTask | undefined {
