@@ -23,7 +23,9 @@
 			"request": "launch",
 			"type": "chrome",
 			"url": "http://localhost:8585",
-			"webRoot": "${workspaceFolder}/dist/web"
+			"pathMapping": {
+				"webpack://cindi/cindi": "${workspaceFolder}"
+			}
 		},
 		{
 			"name": "Debug Test",
