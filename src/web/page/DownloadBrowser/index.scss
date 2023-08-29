@@ -3,22 +3,19 @@ ul.download-browser {
 	padding: 0;
 	margin: 0 20px;
 
-	.capsule {
+	> li {
 		margin: 18px 0;
+		padding: 0;
+	}
+
+	.capsule {
 		overflow: hidden;
-		position: relative;
-		padding: 8px 8px 8px 80px;
 		height: 64px;
 
 		> .thumbnail {
-			position: absolute;
-			display: flex;
-			flex-direction: column;
-			top: 3px;
-			left: 8px;
 			width: 64px;
 			height: 64px;
-			text-align: center;
+			flex: 0 0 64px;
 		}
 
 		.video-icon {
@@ -29,22 +26,10 @@ ul.download-browser {
 			font-size: 9pt;
 		}
 
-		> h2 {
-			margin: 0;
-			font-size: 10pt;
-			font-weight: normal;
+		.name {
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
-		}
-
-		&.folder {
-			display: flex;
-			align-items: center;
-
-			> .thumbnail {
-				top: 8px;
-			}
 		}
 
 		&:hover {

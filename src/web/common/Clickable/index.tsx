@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface ClickableProps extends React.HTMLAttributes<HTMLElement> {
+interface ClickableProps<T> extends React.HTMLAttributes<T> {
 	component?: React.ElementType;
 	disabled?: boolean;
-	onTrigger(e: React.KeyboardEvent<HTMLElement> | React.MouseEvent<HTMLElement>): void;
+	onTrigger(e: React.KeyboardEvent<T> | React.MouseEvent<T>): void;
 }
 
-export default function Clickable({
+export default function Clickable<T = HTMLElement>({
 	component: Component = 'div',
 	role = 'button',
 	disabled = false,
@@ -16,13 +16,13 @@ export default function Clickable({
 	onKeyDown,
 	children,
 	...otherProps
-}: ClickableProps): JSX.Element {
-	const handleClick = (e: React.MouseEvent<HTMLElement>): void => {
+}: ClickableProps<T>): JSX.Element {
+	const handleClick = (e: React.MouseEvent<T>): void => {
 		onTrigger(e);
 		onClick?.(e);
 	};
 
-	const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>): void => {
+	const handleKeyDown = (e: React.KeyboardEvent<T>): void => {
 		if (!e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey && (e.key === ' ' || e.key === 'Enter')) {
 			onTrigger(e);
 		}

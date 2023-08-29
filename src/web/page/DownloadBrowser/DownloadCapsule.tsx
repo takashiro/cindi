@@ -1,7 +1,7 @@
 import React from 'react';
 import type DownloadTask from '@cindi/model/DownloadTask';
 
-import Capsule from '../../common/Capsule';
+import Capsule, { Main, Thumbnail } from '../../common/Capsule';
 import VideoIcon from '../../icon/VideoIcon';
 import DataSize from '../../common/DataSize';
 
@@ -11,11 +11,14 @@ interface DownloadCapsuleProps {
 
 export default function DownloadCapsule({ task }: DownloadCapsuleProps): JSX.Element {
 	return (
-		<Capsule component="li" heading={task.name}>
-			<div className="thumbnail">
+		<Capsule component="li">
+			<Thumbnail>
 				<VideoIcon />
 				<DataSize size={task.size} />
-			</div>
+			</Thumbnail>
+			<Main>
+				<div className="name">{task.name}</div>
+			</Main>
 		</Capsule>
 	);
 }

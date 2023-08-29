@@ -4,13 +4,24 @@ import classNames from 'classnames';
 import './index.scss';
 
 interface CapsuleProps extends React.HTMLAttributes<HTMLElement> {
-	heading: React.ReactNode;
-
 	component?: React.ElementType;
 }
 
+export function Thumbnail({
+	className,
+	...otherProps
+}: React.HTMLAttributes<HTMLDivElement>): JSX.Element {
+	return <div className={classNames('thumbnail', className)} {...otherProps} />;
+}
+
+export function Main({
+	className,
+	...otherProps
+}: React.HTMLAttributes<HTMLDivElement>): JSX.Element {
+	return <div className={classNames('main', className)} {...otherProps} />;
+}
+
 export default function Capsule({
-	heading,
 	component: Component = 'div',
 	className,
 	children,
@@ -21,7 +32,6 @@ export default function Capsule({
 			className={classNames('capsule', className)}
 			{...otherProps}
 		>
-			<h2>{heading}</h2>
 			{children}
 		</Component>
 	);
