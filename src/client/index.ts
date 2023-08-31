@@ -1,10 +1,12 @@
 import mitt from 'mitt';
-import DownloadTask from '@cindi/model/DownloadTask';
+import DownloadTaskModel from '@cindi/model/DownloadTask';
 
 import Folder from './Folder';
+import DownloadTask from './DownloadTask';
+import Browser from './Browser';
 
 type Events = {
-	downloadsChanged: DownloadTask[];
+	ready: boolean;
 };
 
 export default class Client {
@@ -19,12 +21,18 @@ export default class Client {
 	constructor(protected readonly serverUrl = 'api') {
 	}
 
-	async getRootFolder(): Promise<Folder> {
+	async getBrowser(): Promise<Browser> {
 		const downloads = await this.getDownloads();
-		return new Folder('', downloads).simplify();
+		const root = new Folder('');
+		for (const task of downloads) {
+			const location = task.location.split(/[\\/]/);
+			const folder = root.makeFolder(location);
+			folder.addEntry(new DownloadTask(task));
+		}
+		return new Browser(root.trim());
 	}
 
-	async getDownloads(): Promise<DownloadTask[]> {
+	async getDownloads(): Promise<DownloadTaskModel[]> {
 		const res = await this.fetch('downloads');
 		const downloads = await res.json();
 		return downloads;

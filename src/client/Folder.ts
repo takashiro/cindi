@@ -1,73 +1,62 @@
-import type DownloadTask from '@cindi/model/DownloadTask';
+import Entry, { EntryType } from './Entry';
 
-export default class Folder {
-	protected folders = new Map<string, Folder>();
+export default class Folder extends Entry {
+	protected entries = new Map<string, Entry>();
 
-	protected tasks = new Map<string, DownloadTask>();
-
-	constructor(protected name: string, tasks?: DownloadTask[]) {
-		if (tasks) {
-			this.construct(tasks);
-		}
+	constructor(protected name: string) {
+		super(EntryType.Folder, name);
 	}
 
-	getName(): string {
-		return this.name;
+	getEntries(): Entry[] {
+		return [...this.entries.values()].sort((a, b) => {
+			if (a.getType() !== b.getType()) {
+				return a.getType() - b.getType();
+			}
+			return a.getName().localeCompare(b.getName());
+		});
 	}
 
-	getFolders(): Folder[] {
-		return [...this.folders.values()];
+	getEntry(name: string): Entry | undefined {
+		return this.entries.get(name);
 	}
 
-	getFolderNames(): string[] {
-		return this.getFolders().map((folder) => folder.getName()).sort((a, b) => a.localeCompare(b));
-	}
-
-	getTasks(): DownloadTask[] {
-		return [...this.tasks.values()].sort((a, b) => a.name.localeCompare(b.name));
-	}
-
-	getTask(name: string): DownloadTask | undefined {
-		return this.tasks.get(name);
-	}
-
-	addTask(task: DownloadTask): void {
-		this.tasks.set(task.name, task);
+	addEntry(entry: Entry): void {
+		this.entries.set(entry.getName(), entry);
 	}
 
 	getFolder(name: string): Folder | undefined {
-		return this.folders.get(name);
-	}
-
-	addFolder(folder: Folder): void {
-		this.folders.set(folder.getName(), folder);
-	}
-
-	construct(tasks: DownloadTask[]): void {
-		for (const task of tasks) {
-			const location = task.location.split(/[\\/]/);
-			const folder = this.makeFolder(location);
-			folder.addTask(task);
+		const entry = this.getEntry(name);
+		if (entry && entry instanceof Folder) {
+			return entry;
 		}
 	}
 
-	simplify(): Folder {
+	trim(): Folder {
 		let cur: Folder = this; // eslint-disable-line @typescript-eslint/no-this-alias
-		while (cur.folders.size === 1 && cur.tasks.size === 0) {
-			[cur] = cur.folders.values();
+		while (cur.entries.size === 1) {
+			const [entry] = cur.entries.values();
+			if (entry instanceof Folder) {
+				cur = entry;
+			} else {
+				break;
+			}
 		}
 		return cur;
 	}
 
-	protected makeFolder(location: string[]): Folder {
+	makeFolder(location: string[]): Folder {
 		let cur: Folder = this; // eslint-disable-line @typescript-eslint/no-this-alias
 		for (const name of location) {
-			let next = cur.getFolder(name);
+			const next = cur.getEntry(name);
 			if (!next) {
-				next = new Folder(name);
-				cur.addFolder(next);
+				const folder = new Folder(name);
+				cur.addEntry(folder);
+				cur = folder;
+			} else if (next instanceof Folder) {
+				cur = next;
+			} else {
+				throw new Error(`Failed to create directory: ${name} because it exists as a file.`);
 			}
-			cur = next;
 		}
 		return cur;
 	}

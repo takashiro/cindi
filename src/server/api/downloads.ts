@@ -1,12 +1,18 @@
 import { Router } from 'express';
-import { Client } from '@cindi/qbittorrent';
+import { Client, type Torrent } from '@cindi/qbittorrent';
 import DownloadTask, { DownloadProtocol } from '@cindi/model/DownloadTask';
 
 const router = Router();
 const client = new Client('http://192.168.10.15:8787', fetch);
 
 router.get('/', async (req, res) => {
-	const torrents = await client.getTorrents();
+	let torrents: Torrent[];
+	try {
+		torrents = await client.getTorrents();
+	} catch (error) {
+		res.status(502).send('Failed to access the gateway.');
+		return;
+	}
 	const downloads: DownloadTask[] = torrents.map((torrent) => ({
 		protocol: DownloadProtocol.BitTorrent,
 		hash: torrent.hash,

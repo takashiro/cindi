@@ -1,9 +1,11 @@
 import React from 'react';
 
+export type TriggerEvent<T> = React.KeyboardEvent<T> | React.MouseEvent<T>;
+
 interface ClickableProps<T> extends React.HTMLAttributes<T> {
 	component?: React.ElementType;
 	disabled?: boolean;
-	onTrigger(e: React.KeyboardEvent<T> | React.MouseEvent<T>): void;
+	onTrigger(e: TriggerEvent<T>): void;
 }
 
 export default function Clickable<T = HTMLElement>({
