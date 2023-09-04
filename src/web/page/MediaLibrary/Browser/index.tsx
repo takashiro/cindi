@@ -2,9 +2,10 @@ import React from 'react';
 import ClientBrowser from '@cindi/client/Browser';
 
 import CapsuleList from './CapsuleList';
+import Clickable from '../../../common/Clickable';
+import NavIcon from '../../../icon/NavIcon';
 
 import './index.scss';
-import Clickable from '../../../common/Clickable';
 
 interface BrowserProps {
 	browser: ClientBrowser;
@@ -29,12 +30,19 @@ export default function Browser({ browser }: BrowserProps): JSX.Element {
 	const entries = browser.getEntries();
 	return (
 		<div className="browser">
-			<Clickable onTrigger={goHome}>Home</Clickable>
-			{location.length > 0 && (
-				<ul className="nav">
-					{location.map((folder) => <li>{folder}</li>)}
+			<div className="nav">
+				<NavIcon />
+				<ul>
+					<li>
+						<Clickable onTrigger={goHome}>Home</Clickable>
+					</li>
+					{location.map((folder) => (
+						<li>
+							{folder}
+						</li>
+					))}
 				</ul>
-			)}
+			</div>
 			<CapsuleList entries={entries} onTrigger={navigate} />
 		</div>
 	);

@@ -29,7 +29,7 @@ interface CapsuleListProps {
 
 export default function CapsuleList({ entries, onTrigger }: CapsuleListProps): JSX.Element {
 	return (
-		<ul>
+		<ul className="capsule-list">
 			{entries?.map((entry) => (
 				<li key={entry.getName()}>
 					<EntryCapsule entry={entry} onTrigger={onTrigger} />
