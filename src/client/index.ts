@@ -1,5 +1,6 @@
 import mitt from 'mitt';
-import DownloadTaskModel from '@cindi/model/DownloadTask';
+import type DownloadTaskModel from '@cindi/model/DownloadTask';
+import type { Config as SpiderConfig } from '@cindi/spider';
 
 import Folder from './Folder';
 import DownloadTask from './DownloadTask';
@@ -19,6 +20,18 @@ export default class Client {
 	protected readonly emit = this.mitt.emit;
 
 	constructor(protected readonly serverUrl = 'api') {
+	}
+
+	async crawl(config: SpiderConfig): Promise<unknown> {
+		const res = await this.fetch('spider', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(config),
+		});
+		const content = await res.json();
+		return content;
 	}
 
 	async getBrowser(): Promise<Browser> {
