@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SearchIcon from '../icon/SearchIcon';
+import HamburgerIcon from '../icon/HamburgerIcon';
 import Clickable from '../common/Clickable';
 
 import './Navigation.scss';
@@ -16,6 +17,7 @@ export default function Navigation(): JSX.Element {
 				<SearchIcon />
 				Search resources...
 			</Clickable>
+			<HamburgerIcon />
 		</nav>
 	);
 }
