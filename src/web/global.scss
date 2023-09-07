@@ -44,3 +44,15 @@ button {
 	flex-direction: column;
 	min-height: 100vh;
 }
+
+.main-frame {
+	display: flex;
+
+	nav {
+		display: none;
+	}
+
+	main {
+		flex: 1 1 auto;
+	}
+}

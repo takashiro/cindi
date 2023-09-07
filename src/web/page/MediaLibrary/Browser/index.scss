@@ -53,6 +53,7 @@
 	.capsule {
 		overflow: hidden;
 		height: 48px;
+		cursor: pointer;
 
 		> .thumbnail {
 			width: 48px;
@@ -60,6 +61,7 @@
 			flex: 0 0 48px;
 		}
 
+		.folder-icon,
 		.video-icon {
 			opacity: 0.6;
 		}
@@ -75,6 +77,7 @@
 		}
 
 		&:hover {
+			.folder-icon,
 			.video-icon {
 				opacity: 1;
 			}
