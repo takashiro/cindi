@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { useLocationHash } from '../page/routes';
+import { HashRoute, useLocationHash } from '../page/routes';
 import MediaLibrary from '../page/MediaLibrary';
 import Spider from '../page/Spider';
 
 import './Main.scss';
 
 const pageMap = new Map<string, React.ElementType>([
-	['#library', MediaLibrary],
-	['#spider', Spider],
+	[HashRoute.MediaLibrary, MediaLibrary],
+	[HashRoute.Spider, Spider],
 ]);
 
 export default function Main(): JSX.Element {

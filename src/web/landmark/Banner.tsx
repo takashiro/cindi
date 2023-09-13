@@ -2,12 +2,13 @@ import React from 'react';
 
 import Clickable from '../common/Clickable';
 import SearchIcon from '../icon/SearchIcon';
+import { HashRoute, navigate } from '../page/routes';
 
 import './Banner.scss';
 
 export default function Banner(): JSX.Element {
 	const search = () => {
-		// ignore
+		navigate(HashRoute.Spider);
 	};
 	return (
 		<header>

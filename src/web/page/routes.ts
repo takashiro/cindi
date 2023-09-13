@@ -1,5 +1,10 @@
 import React from 'react';
 
+export const enum HashRoute {
+	MediaLibrary = '#library',
+	Spider = '#spider',
+}
+
 export function useLocationHash(): string {
 	const [contextPath, setContextPath] = React.useState(window.location.hash);
 	React.useEffect(() => {
@@ -12,6 +17,6 @@ export function useLocationHash(): string {
 	return contextPath;
 }
 
-export function navigate(hash: string): void {
+export function navigate(hash: HashRoute): void {
 	window.location.href = hash;
 }
