@@ -46,7 +46,7 @@ export interface Folder {
 	/**
 	 * CSS selectors to find topics on this page.
 	 */
-	topics: TopicLinkLocator[];
+	topics: LinkLocator[];
 
 	/**
 	 * A link to go to the previous page.

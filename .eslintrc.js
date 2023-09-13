@@ -31,6 +31,12 @@ module.exports = {
 			'error',
 			'tab',
 		],
+		'jsx-a11y/label-has-associated-control': [
+			'error',
+			{
+				assert: 'either',
+			},
+		],
 		'linebreak-style': 'off',
 		'no-await-in-loop': 'off',
 		'react/jsx-indent': [

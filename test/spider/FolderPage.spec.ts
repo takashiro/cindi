@@ -7,17 +7,10 @@ const folder = new FolderPage('https://takashiro.cn/folder.html', {
 	topics: [
 		{
 			selector: 'ul.topic > li > a',
-			config: {
-				title: 'h1',
-				downloads: [],
-			},
 		},
 		{
 			selector: 'ul.invalid',
-			config: {
-				title: 'h1',
-				downloads: [],
-			},
+			property: 'alt',
 		},
 	],
 	prev: {

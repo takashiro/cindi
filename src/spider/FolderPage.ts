@@ -1,10 +1,10 @@
-import type { Folder as FolderPageOptions, LinkLocator, TopicLinkLocator } from './model/Locator';
+import type { Folder as FolderPageOptions, LinkLocator } from './model/Locator';
 import type Hyperlink from './model/Hyperlink';
 import type Folder from './model/Folder';
 import Page from './Page';
 
 export class FolderPage extends Page {
-	protected topics: TopicLinkLocator[];
+	protected topics: LinkLocator[];
 
 	protected prev?: LinkLocator;
 
